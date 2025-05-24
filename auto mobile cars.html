@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoMobile - New & Used Cars</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset and Base Styles */
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+         :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --dark-color: #2c3e50;
+            --light-color: #ecf0f1;
+            --transition: all 0.3s ease;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: var(--dark-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        /* Navigation */
+        
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 0;
+            z-index: 1000;
+            transition: var(--transition);
+            background-color: rgba(44, 62, 80, 0.9);
+        }
+        
+        nav.scrolled {
+            background-color: rgba(44, 62, 80, 0.95);
+            padding: 15px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--light-color);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--secondary-color);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            color: var(--light-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .cart-icon {
+            position: relative;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+        
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 24px;
+            color: var(--light-color);
+        }
+        /* Hero Section */
+        
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1494972308805-463bc619d34e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1473&q=80') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--light-color);
+            padding: 0 20px;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--secondary-color);
+            color: var(--light-color);
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+        
+        .btn:hover {
+            background: var(--accent-color);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        /* Inventory Section */
+        
+        .inventory {
+            padding: 80px 0;
+            background: var(--light-color);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark-color);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background: var(--secondary-color);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .section-title p {
+            color: #777;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 8px 20px;
+            background: white;
+            border: 2px solid var(--secondary-color);
+            color: var(--secondary-color);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: var(--secondary-color);
+            color: white;
+        }
+        
+        .inventory-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .car-card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: var(--transition);
+        }
+        
+        .car-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .car-img {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .car-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .car-card:hover .car-img img {
+            transform: scale(1.05);
+        }
+        
+        .car-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--accent-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .car-content {
+            padding: 20px;
+        }
+        
+        .car-make {
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .car-model {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--dark-color);
+        }
+        
+        .car-specs {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        .car-price {
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .original-price {
+            text-decoration: line-through;
+            color: #999;
+            margin-right: 10px;
+        }
+        
+        .discount-price {
+            color: var(--accent-color);
+            font-size: 1.2rem;
+        }
+        
+        .car-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--secondary-color);
+            color: var(--secondary-color);
+            padding: 8px 15px;
+        }
+        
+        .btn-outline:hover {
+            background: var(--secondary-color);
+            color: white;
+        }
+        /* Cart Modal */
+        
+        .cart-modal {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            max-width: 400px;
+            height: 100vh;
+            background: white;
+            z-index: 2000;
+            transition: var(--transition);
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            overflow-y: auto;
+        }
+        
+        .cart-modal.active {
+            right: 0;
+        }
+        
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .cart-header h3 {
+            font-size: 1.5rem;
+        }
+        
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--accent-color);
+        }
+        
+        .cart-items {
+            margin-bottom: 20px;
+        }
+        
+        .cart-item {
+            display: flex;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .cart-item-img {
+            width: 80px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-right: 15px;
+        }
+        
+        .cart-item-details {
+            flex: 1;
+        }
+        
+        .cart-item-title {
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+        
+        .cart-item-price {
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+        
+        .remove-item {
+            background: none;
+            border: none;
+            color: #999;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .remove-item:hover {
+            color: var(--accent-color);
+        }
+        
+        .cart-total {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-align: right;
+        }
+        
+        .cart-total span {
+            color: var(--accent-color);
+        }
+        
+        .checkout-btn {
+            width: 100%;
+            padding: 12px;
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .checkout-btn:hover {
+            background: var(--accent-color);
+        }
+        
+        .empty-cart {
+            text-align: center;
+            padding: 30px 0;
+            color: #777;
+        }
+        /* Overlay */
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1500;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+        
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        /* Footer */
+        
+        footer {
+            background: var(--dark-color);
+            color: var(--light-color);
+            padding: 50px 0 20px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .footer-col h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--secondary-color);
+        }
+        
+        .footer-col p {
+            margin-bottom: 15px;
+            color: #bbb;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #bbb;
+            text-decoration: none;
+            transition: var(--transition);
+            display: block;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary-color);
+            padding-left: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--light-color);
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background: var(--secondary-color);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        /* Back to Top Button */
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--secondary-color);
+            color: var(--light-color);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 999;
+        }
+        
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background: var(--accent-color);
+            transform: translateY(-5px);
+        }
+        /* Notification */
+        
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #2ecc71;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .notification.show {
+            opacity: 1;
+        }
+        /* Responsive Styles */
+        
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: rgba(44, 62, 80, 0.95);
+                flex-direction: column;
+                align-items: center;
+                padding-top: 40px;
+                transition: var(--transition);
+            }
+            .nav-links.active {
+                left: 0;
+            }
+            .nav-links li {
+                margin: 15px 0;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            .cart-modal {
+                max-width: 100%;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .btn {
+                padding: 10px 25px;
+                font-size: 0.9rem;
+            }
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            .car-actions {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .car-actions .btn {
+                width: 100%;
+                text-align: center;
+            }
+            .filter-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">Auto<span>Mobile</span></a>
+            <div class="menu-toggle" id="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#inventory">Inventory</a></li>
+                <li><a href="#new">New Cars</a></li>
+                <li><a href="#used">Used Cars</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li>
+                    <a href="#cart" class="cart-icon" id="cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Find Your Perfect Car</h1>
+            <p>Explore our wide selection of new and used vehicles at unbeatable prices.</p>
+            <a href="#inventory" class="btn">Browse Inventory</a>
+        </div>
+    </section>
+
+    <!-- Inventory Section -->
+    <section class="inventory" id="inventory">
+        <div class="section-title">
+            <h2>Featured Vehicles</h2>
+            <p>Discover our latest models with special financing options available.</p>
+        </div>
+
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">All Cars</button>
+            <button class="filter-btn" data-filter="new">New Cars</button>
+            <button class="filter-btn" data-filter="used">Used Cars</button>
+            <button class="filter-btn" data-filter="suv">SUVs</button>
+            <button class="filter-btn" data-filter="sedan">Sedans</button>
+        </div>
+
+        <div class="inventory-grid" id="inventory-grid">
+            <!-- Cars will be dynamically inserted here by JavaScript -->
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>AutoMobile</h3>
+                <p>Your trusted partner for new and used car sales with the best prices and service in town.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#inventory">Inventory</a></li>
+                    <li><a href="#new">New Cars</a></li>
+                    <li><a href="#used">Used Cars</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Services</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Financing</a></li>
+                    <li><a href="#">Test Drive</a></li>
+                    <li><a href="#">Trade-In</a></li>
+                    <li><a href="#">Maintenance</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Gulastan e juhar block 9 near nawaz sceem karachi</p>
+                <p><i class="fas fa-phone"></i> 03032966402</p>
+                <p><i class="fas fa-envelope"></i> arifkhalil689@gmail.com</p>
+                <p><i class="fas fa-clock"></i> Mon-Sat: 9AM - 10PM</p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; <span id="year"></span> AutoMobile. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="backToTop">l
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Cart Modal -->
+    <div class="cart-modal" id="cart-modal">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button class="close-cart" id="close-cart">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <!-- Cart items will be inserted here -->
+        </div>
+        <div class="cart-total">
+            Total: $<span id="cart-total">0</span>
+        </div>
+        <button class="checkout-btn" id="checkout-btn">Proceed to Checkout</button>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification"></div>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+                    // Set current year in footer
+                    document.getElementById('year').textContent = new Date().getFullYear();
+
+                    // Mobile Menu Toggle
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    const navLinks = document.getElementById('nav-links');
+
+                    mobileMenu.addEventListener('click', function() {
+                        navLinks.classList.toggle('active');
+                        this.querySelector('i').classList.toggle('fa-times');
+                        this.querySelector('i').classList.toggle('fa-bars');
+                    });
+
+                    // Close mobile menu when clicking on a link
+                    document.querySelectorAll('.nav-links a').forEach(link => {
+                        link.addEventListener('click', function() {
+                            navLinks.classList.remove('active');
+                            mobileMenu.querySelector('i').classList.add('fa-bars');
+                            mobileMenu.querySelector('i').classList.remove('fa-times');
+                        });
+                    });
+
+                    // Navbar scroll effect
+                    const navbar = document.getElementById('navbar');
+                    window.addEventListener('scroll', function() {
+                        if (window.scrollY > 100) {
+                            navbar.classList.add('scrolled');
+                        } else {
+                            navbar.classList.remove('scrolled');
+                        }
+                    });
+
+                    // Back to Top Button
+                    const backToTop = document.getElementById('backToTop');
+                    window.addEventListener('scroll', function() {
+                        if (window.scrollY > 300) {
+                            backToTop.classList.add('active');
+                        } else {
+                            backToTop.classList.remove('active');
+                        }
+                    });
+
+                    backToTop.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        window.scrollTo({
+                            top: 0,
+                            behavior: 'smooth'
+                        });
+                    });
+
+                    // Smooth scrolling for anchor links
+                    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                        anchor.addEventListener('click', function(e) {
+                            e.preventDefault();
+                            const targetId = this.getAttribute('href');
+                            if (targetId === '#') return;
+
+                            const targetElement = document.querySelector(targetId);
+                            if (targetElement) {
+                                window.scrollTo({
+                                    top: targetElement.offsetTop - 80,
+                                    behavior: 'smooth'
+                                });
+                            }
+                        });
+                    });
+
+                    // Car data
+                    const cars = [{
+                        id: 1,
+                        make: 'Toyota',
+                        model: 'Camry 2023',
+                        image: 'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+                        type: 'New',
+                        category: 'sedan',
+                        mileage: '5,000',
+                        transmission: 'Automatic',
+                        price: 28990,
+                        discountPrice: 26990,
+                    }, {
+                        id: 2,
+                        make: 'Honda',
+                        model: 'Civic 2023',
+                        image: 'https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1528&q=80',
+                        type: 'New',
+                        category: 'sedan',
+                        mileage: '3,200',
+                        transmission: 'Automatic',
+                        price: 24900,
+                        discountPrice: 22900,
+                    }, {
+                        id: 3,
+                        make: 'Ford',
+                        model: 'Mustang GT',
+                        image: 'https://images.unsplash.com/photo-1616788494707-ec28f08d05a1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80',
+                        type: 'New',
+                        category: 'sports',
+                        mileage: '1,500',
+                        transmission: 'Manual',
+                        price: 42900,
+                        discountPrice: 39900,
+                    }, {
+                        id: 4,
+                        make: 'Chevrolet',
+                        model: 'Silverado 1500',
+                        image: 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+                        type: 'New',
+                        category: 'truck',
+                        mileage: '7,800',
+                        transmission: 'Automatic',
+                        price: 38900,
+                        discountPrice: 35900,
+                    }, {
+                        id: 5,
+                        make: 'BMW',
+                        model: 'X5 2023',
+                        image: 'https://images.unsplash.com/photo-1555215695-3004980ad54e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+                        type: 'New',
+                        category: 'suv',
+                        mileage: '2,300',
+                        transmission: 'Automatic',
+                        price: 58900,
+                        discountPrice: 54900,
+                    }, {
+                        id: 6,
+                        make: 'Mercedes-Benz',
+                        model: 'C-Class 2023',
+                        image: 'https://images.unsplash.com/photo-1617531653332-bd46c24f2068?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1515&q=80',
+                        type: 'New',
+                        category: 'sedan',
+                        mileage: '4,100',
+                        transmission: 'Automatic',
+                        price: 45900,
+                        discountPrice: 42900,
+                    }, {
+                        id: 7,
+                        make: 'Audi',
+                        model: 'A4 2022',
+                        image: 'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+                        type: 'Used',
+                        category: 'sedan',
+                        mileage: '18,500',
+                        transmission: 'Automatic',
+                        price: 34900,
+                        discountPrice: 31900,
+                    }, {
+                        id: 8,
+                        make: 'Tesla',
+                        model: 'Model 3',
+                        image: 'https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+                        type: 'Used',
+                        category: 'electric',
+                        mileage: '12,300',
+                        transmission: 'Automatic',
+                        price: 41900,
+                        discountPrice: 38900,
+                    }, {
+                        id: 9,
+                        make: 'Jeep',
+                        model: 'Wrangler',
+                        image: 'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1476&q=80',
+                        type: 'Used',
+                        category: 'suv',
+                        mileage: '25,700',
+                        transmission: 'Manual',
+                        price: 32900,
+                        discountPrice: 29900,
+                    }, {
+                        id: 10,
+                        make: 'Subaru',
+                        model: 'Outback',
+                        image: 'https://images.unsplash.com/photo-1617531653520-4896f1a41e52?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+                        type: 'Used',
+                        category: 'suv',
+                        mileage: '32,400',
+                        transmission: 'Automatic',
+                        price: 27900,
+                        discountPrice: 24900,
+                    }, {
+                        id: 11,
+                        make: 'Lexus',
+                        model: 'RX 350',
+                        image: 'https://images.unsplash.com/photo-1617531653332-bd46c24f2068?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1515&q=80',
+                        type: 'Used',
+                        category: 'suv',
+                        mileage: '22,100',
+                        transmission: 'Automatic',
+                        price: 38900,
+                        discountPrice: 35900,
+                    }, {
+                        id: 12,
+                        make: 'Porsche',
+                        model: '911 Carrera',
+                        image: 'https://images.unsplash.com/photo-1580273916550-e323be2ae537?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1364&q=80',
+                        type: 'Used',
+                        category: 'sports',
+                        mileage: '8,900',
+                        transmission: 'Automatic',
+                        price: 89900,
+                        discountPrice: 84900,
+                    }];
+
+                    // Cart functionality
+                    let cart = [];
+                    const cartCount = document.querySelector('.cart-count');
+                    const cartItemsContainer = document.getElementById('cart-items');
+                    const cartTotal = document.getElementById('cart-total');
+                    const cartModal = document.getElementById('cart-modal');
+                    const overlay = document.getElementById('overlay');
+                    const cartIcon = document.getElementById('cart-icon');
+                    const closeCart = document.getElementById('close-cart');
+                    const checkoutBtn = document.getElementById('checkout-btn');
+                    const notification = document.getElementById('notification');
+
+                    // Filter buttons
+                    const filterButtons = document.querySelectorAll('.filter-btn');
+                    const inventoryGrid = document.getElementById('inventory-grid');
+
+                    // Render cars based on filter
+                    function renderCars(filter = 'all') {
+                        inventoryGrid.innerHTML = '';
+
+                        const filteredCars = filter === 'all' ?
+                            cars :
+                            cars.filter(car =>
+                                filter === 'new' ? car.type === 'New' :
+                                filter === 'used' ? car.type === 'Used' :
+                                car.category === filter
+                            );
+
+                        filteredCars.forEach(car => {
+                                    const carCard = document.createElement('div');
+                                    carCard.className = 'car-card';
+                                    carCard.innerHTML = `
+                        <div class="car-img">
+                            <img src="${car.image}" alt="${car.make} ${car.model}">
+                            <span class="car-badge">${car.type}</span>
+                        </div>
+                        <div class="car-content">
+                            <p class="car-make">${car.make}</p>
+                            <h3 class="car-model">${car.model}</h3>
+                            <div class="car-specs">
+                                <span><i class="fas fa-tachometer-alt"></i> ${car.mileage} mi</span>
+                                <span><i class="fas fa-cog"></i> ${car.transmission}</span>
+                            </div>
+                            <div class="car-price">
+                                ${car.discountPrice ? `
+                                    <span class="original-price">$${car.price.toLocaleString()}</span>
+                                    <span class="discount-price">$${car.discountPrice.toLocaleString()}</span>
+                                ` : `
+                                    <span>$${car.price.toLocaleString()}</span>
+                                `}
+                            </div>
+                            <div class="car-actions">
+                                <a href="#" class="btn btn-outline">Details</a>
+                                <button class="btn add-to-cart" data-id="${car.id}">Add to Cart</button>
+                            </div>
+                        </div>
+                    `;
+                    inventoryGrid.appendChild(carCard);
+                });
+            }
+
+            // Initialize with all cars
+            renderCars();
+
+            // Filter cars
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    button.classList.add('active');
+                    // Filter cars
+                    renderCars(button.dataset.filter);
+                });
+            });
+
+            // Add to cart
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('add-to-cart')) {
+                    const carId = parseInt(e.target.getAttribute('data-id'));
+                    const car = cars.find(c => c.id === carId);
+                    
+                    // Check if item already in cart
+                    const existingItem = cart.find(item => item.id === carId);
+                    
+                    if (existingItem) {
+                        existingItem.quantity += 1;
+                    } else {
+                        cart.push({
+                            ...car,
+                            quantity: 1
+                        });
+                    }
+                    
+                    updateCart();
+                    showNotification(`${car.make} ${car.model} added to cart`);
+                    
+                    // Visual feedback
+                    e.target.textContent = 'Added!';
+                    e.target.style.backgroundColor = '#4CAF50';
+                    
+                    setTimeout(() => {
+                        e.target.textContent = 'Add to Cart';
+                        e.target.style.backgroundColor = '';
+                    }, 2000);
+                }
+            });
+
+            // Remove from cart
+            cartItemsContainer.addEventListener('click', function(e) {
+                if (e.target.classList.contains('remove-item')) {
+                    const carId = parseInt(e.target.getAttribute('data-id'));
+                    cart = cart.filter(item => item.id !== carId);
+                    updateCart();
+                    showNotification('Item removed from cart');
+                }
+            });
+
+            // Update cart UI
+            function updateCart() {
+                // Update cart count
+                const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+                cartCount.textContent = totalItems;
+                
+                // Update cart items
+                cartItemsContainer.innerHTML = '';
+                
+                if (cart.length === 0) {
+                    cartItemsContainer.innerHTML = '<div class="empty-cart">Your cart is empty</div>';
+                    cartTotal.textContent = '0';
+                    return;
+                }
+                
+                let totalPrice = 0;
+                
+                cart.forEach(item => {
+                    const itemPrice = item.discountPrice || item.price;
+                    totalPrice += itemPrice * item.quantity;
+                    
+                    const cartItem = document.createElement('div');
+                    cartItem.className = 'cart-item';
+                    cartItem.innerHTML = `
+                        <img src="${item.image}" alt="${item.make} ${item.model}" class="cart-item-img">
+                        <div class="cart-item-details">
+                            <h4 class="cart-item-title">${item.make} ${item.model}</h4>
+                            <p class="cart-item-price">$${(item.discountPrice || item.price).toLocaleString()} x ${item.quantity}</p>
+                        </div>
+                        <button class="remove-item" data-id="${item.id}">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    `;
+                    cartItemsContainer.appendChild(cartItem);
+                });
+                
+                // Update total
+                cartTotal.textContent = totalPrice.toLocaleString();
+            }
+
+            // Toggle cart modal
+            cartIcon.addEventListener('click', function(e) {
+                e.preventDefault();
+                cartModal.classList.add('active');
+                overlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+
+            closeCart.addEventListener('click', function() {
+                cartModal.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+
+            overlay.addEventListener('click', function() {
+                cartModal.classList.remove('active');
+                this.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+
+            // Checkout
+            checkoutBtn.addEventListener('click', function() {
+                if (cart.length === 0) {
+                    showNotification('Your cart is empty');
+                    return;
+                }
+                
+                showNotification('Proceeding to checkout...');
+                setTimeout(() => {
+                    cart = [];
+                    updateCart();
+                    cartModal.classList.remove('active');
+                    overlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                }, 1500);
+            });
+
+            // Show notification
+            function showNotification(message) {
+                notification.textContent = message;
+                notification.classList.add('show');
+                
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                }, 3000);
+            }
+        });
+    </script>
+</body>
+
+</html>
