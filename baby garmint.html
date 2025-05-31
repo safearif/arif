@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Little Angels | Premium Baby Garments (2021)</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@400;500;600&display=swap">
+    <style>
+         :root {
+            --primary: #50283a;
+            --secondary: #7afcff;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --accent: #fe7f9c;
+            --text: #333333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #fef6f9;
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo span {
+            font-size: 14px;
+            margin-left: 8px;
+            font-weight: 400;
+            opacity: 0.8;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        nav ul li a:hover {
+            opacity: 0.9;
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: white;
+            transition: width 0.3s ease;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--secondary);
+            color: var(--dark);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .hero {
+            padding: 60px 0;
+            background: linear-gradient(to right, #fff0f5, #f8f9fa);
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: var(--dark);
+            font-weight: 700;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: #555;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(254, 127, 156, 0.4);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(254, 127, 156, 0.6);
+        }
+        
+        .products {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--dark);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--secondary);
+            color: var(--dark);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            z-index: 2;
+        }
+        
+        .product-image {
+            height: 300px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-category {
+            color: var(--primary);
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        
+        .product-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+        .product-price {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .current-price {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--accent);
+        }
+        
+        .original-price {
+            font-size: 16px;
+            color: #999;
+            text-decoration: line-through;
+            margin-left: 10px;
+        }
+        
+        .product-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .add-to-cart,
+        .view-details {
+            padding: 8px 15px;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .add-to-cart {
+            background-color: var(--primary);
+            color: rgb(224, 194, 194);
+            border: none;
+            flex-grow: 1;
+            margin-right: 10px;
+        }
+        
+        .add-to-cart:hover {
+            background-color: var(--accent);
+        }
+        
+        .view-details {
+            background-color: transparent;
+            border: 1px solid #ddd;
+            color: var(--text);
+        }
+        
+        .view-details:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+        
+        .product-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .product-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-content {
+            background-color: white;
+            width: 90%;
+            max-width: 900px;
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            max-height: 90vh;
+            position: relative;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: rgba(0, 0, 0, 0.2);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 2;
+            color: white;
+            font-size: 18px;
+        }
+        
+        .modal-image {
+            width: 50%;
+            height: 100%;
+        }
+        
+        .modal-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .modal-info {
+            width: 50%;
+            padding: 40px;
+            overflow-y: auto;
+        }
+        
+        .modal-title {
+            font-size: 28px;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .modal-price {
+            font-size: 24px;
+            color: var(--accent);
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .modal-description {
+            margin-bottom: 25px;
+            color: #555;
+        }
+        
+        .size-selector {
+            margin-bottom: 25px;
+        }
+        
+        .size-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .size-options {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .size-option {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .size-option:hover,
+        .size-option.selected {
+            border-color: var(--primary);
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .quantity-selector {
+            margin-bottom: 30px;
+        }
+        
+        .quantity-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .quantity-control {
+            display: flex;
+            align-items: center;
+        }
+        
+        .quantity-btn {
+            width: 35px;
+            height: 35px;
+            background-color: #f0f0f0;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .quantity-input {
+            width: 50px;
+            height: 35px;
+            text-align: center;
+            border: 1px solid #ddd;
+            margin: 0 5px;
+        }
+        
+        .modal-actions {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .modal-add-to-cart {
+            flex-grow: 1;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-add-to-cart:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+        
+        .wishlist-btn {
+            width: 50px;
+            background-color: #f0f0f0;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .wishlist-btn:hover {
+            background-color: #e0e0e0;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-column ul li a {
+            color: #bbb;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-column ul li a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            color: white;
+            background-color: rgba(255, 255, 255, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #bbb;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            nav ul {
+                margin-top: 20px;
+                justify-content: center;
+            }
+            nav ul li {
+                margin: 0 10px;
+            }
+            .hero h1 {
+                font-size: 36px;
+            }
+            .modal-content {
+                flex-direction: column;
+                max-height: 90vh;
+                overflow-y: auto;
+            }
+            .modal-image,
+            .modal-info {
+                width: 100%;
+            }
+            .modal-image {
+                height: 300px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .product-actions {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .add-to-cart,
+            .view-details {
+                width: 100%;
+                margin-right: 0;
+            }
+            .modal-actions {
+                flex-direction: column;
+            }
+            .modal-add-to-cart,
+            .wishlist-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                Little Angels <span>Since 2021</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Shop</a></li>
+                    <li><a href="#">Collections</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li>
+                        <div class="cart-icon">
+                            <svg xmlns="arifkhalil@gmail.com" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="9" cy="21" r="1"></circle>
+                                <circle cx="20" cy="21" r="1"></circle>
+                                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                            </svg>
+                            <div class="cart-count">0</div>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Premium Baby Garments for Your Little Angel</h1>
+            <p>Discover our 2021 collection of ultra-soft, organic cotton baby suits designed for comfort and style. Perfect for your newborn's delicate skin.</p>
+            <a href="#products" class="cta-button">Shop Now</a>
+        </div>
+    </section>
+
+    <section class="products" id="products">
+        <div class="container">
+            <h2 class="section-title">Our Baby Garment Collection</h2>
+            <div class="product-grid" id="productGrid">
+                <!-- Products will be loaded here via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <div class="product-modal" id="productModal">
+        <div class="modal-content">
+            <div class="modal-close" id="modalClose">&times;</div>
+            <div class="modal-image">
+                <img id="modalImage" src="" alt="">
+            </div>
+            <div class="modal-info">
+                <h2 class="modal-title" id="modalTitle"></h2>
+                <div class="modal-price" id="modalPrice"></div>
+                <p class="modal-description" id="modalDescription"></p>
+
+                <div class="size-selector">
+                    <div class="size-title">Select Size:</div>
+                    <div class="size-options">
+                        <div class="size-option">0-3M</div>
+                        <div class="size-option">3-6M</div>
+                        <div class="size-option selected">6-12M</div>
+                        <div class="size-option">12-18M</div>
+                    </div>
+                </div>
+
+                <div class="quantity-selector">
+                    <div class="quantity-title">Quantity:</div>
+                    <div class="quantity-control">
+                        <button class="quantity-btn minus">-</button>
+                        <input type="number" class="quantity-input" value="1" min="1">
+                        <button class="quantity-btn plus">+</button>
+                    </div>
+                </div>
+
+                <div class="modal-actions">
+                    <button class="modal-add-to-cart">Add to Cart</button>
+                    <button class="wishlist-btn">
+                        <svg xmlns="arifkhalil689@gmail.com" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Little Angels</h3>
+                    <p>Premium baby garments designed with love and care for your little ones.</p>
+                    <div class="social-links">
+                        <a href="#"><svg xmlns="arifkhalil689@gmail.com" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+                        <a href="#"><svg xmlns="arifkhalil689@gmail.com" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+                        <a href="#"><svg xmlns="arifkhalil689@gmail.com" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Shop</h3>
+                    <ul>
+                        <li><a href="#">New Arrivals</a></li>
+                        <li><a href="#">Best Sellers</a></li>
+                        <li><a href="#">Organic Collection</a></li>
+                        <li><a href="#">Premium Collection</a></li>
+                        <li><a href="#">Sale Items</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Customer Care</h3>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Shipping & Returns</a></li>
+                        <li><a href="#">Size Guide</a></li>
+                        <li><a href="#">Care Instructions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>About Us</h3>
+                    <ul>
+                        <li><a href="#">Our Story</a></li>
+                        <li><a href="#">Sustainability</a></li>
+                        <li><a href="#">Materials</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Press</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2021 Little Angels Baby Garments. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Product data
+        const products = [{
+            id: 1,
+            title: "Organic Cotton Baby Suit",
+            category: "Newborn",
+            price: 29.99,
+            originalPrice: 39.99,
+            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaV77zssZQ0n5ACpEuXfyN8CHR6jXM4OTzaA&s",
+            description: "Ultra-soft 100% organic cotton baby suit with snap buttons for easy diaper changes. Gentle on baby's delicate skin and perfect for all seasons.",
+            badge: "Bestseller"
+        }, {
+            id: 2,
+            title: "Premium Bamboo Sleepsuit",
+            category: "0-6 Months",
+            price: 34.99,
+            originalPrice: 44.99,
+            image: "https://i.pinimg.com/236x/d3/19/17/d319170fa5b2dce58a1c062de6c2be37.jpg",
+            description: "Breathable bamboo fiber sleepsuit with fold-over mittens and footies. Naturally antibacterial and thermo-regulating for optimal comfort.",
+            badge: "New"
+        }, {
+            id: 3,
+            title: "Luxury Cashmere Baby Set",
+            category: "Special Occasion",
+            price: 89.99,
+            originalPrice: 119.99,
+            image: "https://thumbs.dreamstime.com/b/pile-four-neatly-folded-baby-garments-centered-light-colored-sheet-adorned-pattern-pink-yellow-green-flowers-376132906.jpg",
+            description: "Exquisite cashmere blend baby set for special occasions. Includes matching hat and booties. Hand-wash only.",
+            badge: "Luxury"
+        }, {
+            id: 4,
+            title: "Eco-Friendly Romper",
+            category: "6-12 Months",
+            price: 24.99,
+            originalPrice: 32.99,
+            image: "https://images.contentstack.io/v3/assets/bltee50a64aa85c8d90/blt0ff4fe7c4bce8f86/682d81f2ef59b1601d6b6f65/BON-W-01513-Baby_Bunting_Website_mobile_1125x1000px2.png?width=768&format=webp&quality=80",
+            description: "Sustainable romper made from recycled materials. Features adjustable straps and reinforced knees for active babies.",
+            badge: "Eco"
+        }, {
+            id: 5,
+            title: "Swaddle Transition Suit",
+            category: "Newborn",
+            price: 31.99,
+            originalPrice: 39.99,
+            image: "https://media.istockphoto.com/id/1324566072/photo/gender-neutral-baby-garment-and-accessories-organic-cotton-clothes.jpg?s=612x612&w=0&k=20&c=-LSuQ8eTU0_nXoq5ITRQ9TF4Kcfir96IUaCeT9NFtLw=",
+            description: "Innovative suit designed to help transition from swaddling. Features a secure yet flexible design that comforts while allowing movement.",
+            badge: "Innovation"
+        }, {
+            id: 6,
+            title: "All-Season Jumpsuit",
+            category: "3-12 Months",
+            price: 37.99,
+            originalPrice: 49.99,
+            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQK0VTtnDDYNR5rGJQ0aSzSb7NMdj-RLcaaLQ&s",
+            description: "Versatile jumpsuit with removable sleeves and legs to adapt to any weather. Made from quick-dry, breathable fabric.",
+            badge: "Popular"
+        }, {
+            id: 7,
+            title: "All-Season Jumpsuit",
+            category: "3-12 Months",
+            price: 41.99,
+            originalPrice: 49.99,
+            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPiRVXuxwH9M8SKOEpHGFOkvxTkTgHxKBbgQ&s",
+            description: "Versatile jumpsuit with removable sleeves and legs to adapt to any weather. Made from quick-dry, breathable fabric.",
+            badge: "Popular"
+        }, {
+            id: 8,
+            title: "All-Season Jumpsuit",
+            category: "3-12 Months",
+            price: 43.99,
+            originalPrice: 50.99,
+            image: "https://www.hunarcourses.com/blog/wp-content/uploads/2019/11/image-2-5-788x1024-1.jpg",
+            description: "Versatile jumpsuit with removable sleeves and legs to adapt to any weather. Made from quick-dry, breathable fabric.",
+            badge: "Popular"
+
+        }];
+
+
+
+        // DOM elements
+        const productGrid = document.getElementById('productGrid');
+        const productModal = document.getElementById('productModal');
+        const modalClose = document.getElementById('modalClose');
+        const modalImage = document.getElementById('modalImage');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalPrice = document.getElementById('modalPrice');
+        const modalDescription = document.getElementById('modalDescription');
+        const sizeOptions = document.querySelectorAll('.size-option');
+        const minusBtn = document.querySelector('.quantity-btn.minus');
+        const plusBtn = document.querySelector('.quantity-btn.plus');
+        const quantityInput = document.querySelector('.quantity-input');
+        const cartCount = document.querySelector('.cart-count');
+
+        // Current cart items
+        let cartItems = 0;
+
+        // Render products
+        function renderProducts() {
+            productGrid.innerHTML = '';
+            products.forEach(product => {
+                        const productCard = document.createElement('div');
+                        productCard.className = 'product-card';
+                        productCard.innerHTML = `
+                    ${product.badge ? `<div class="product-badge">${product.badge}</div>` : ''}
+                    <div class="product-image">
+                        <img src="${product.image}" alt="${product.title}">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">${product.category}</div>
+                        <h3 class="product-title">${product.title}</h3>
+                        <div class="product-price">
+                            <span class="current-price">$${product.price.toFixed(2)}</span>
+                            ${product.originalPrice ? `<span class="original-price">$${product.originalPrice.toFixed(2)}</span>` : ''}
+                        </div>
+                        <div class="product-actions">
+                            <button class="add-to-cart" data-id="${product.id}">Add to Cart</button>
+                            <button class="view-details" data-id="${product.id}">View Details</button>
+                        </div>
+                    </div>
+                `;
+                productGrid.appendChild(productCard);
+            });
+
+            // Add event listeners to buttons
+            document.querySelectorAll('.view-details').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const productId = parseInt(e.target.getAttribute('data-id'));
+                    openProductModal(productId);
+                });
+            });
+
+            document.querySelectorAll('.add-to-cart').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const productId = parseInt(e.target.getAttribute('data-id'));
+                    addToCart(productId);
+                });
+            });
+        }
+
+        // Open product modal
+        function openProductModal(productId) {
+            const product = products.find(p => p.id === productId);
+            if (product) {
+                modalImage.src = product.image;
+                modalImage.alt = product.title;
+                modalTitle.textContent = product.title;
+                modalPrice.textContent = `$${product.price.toFixed(2)}`;
+                modalDescription.textContent = product.description;
+                productModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        // Close product modal
+        function closeProductModal() {
+            productModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Add to cart
+        function addToCart(productId) {
+            cartItems++;
+            cartCount.textContent = cartItems;
+            
+            // Animation for cart icon
+            const cartIcon = document.querySelector('.cart-icon');
+            cartIcon.classList.add('animate');
+            setTimeout(() => {
+                cartIcon.classList.remove('animate');
+            }, 500);
+        }
+
+        // Event listeners
+        modalClose.addEventListener('click', closeProductModal);
+        productModal.addEventListener('click', (e) => {
+            if (e.target === productModal) {
+                closeProductModal();
+            }
+        });
+
+        sizeOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                sizeOptions.forEach(opt => opt.classList.remove('selected'));
+                option.classList.add('selected');
+            });
+        });
+
+        minusBtn.addEventListener('click', () => {
+            let value = parseInt(quantityInput.value);
+            if (value > 1) {
+                quantityInput.value = value - 1;
+            }
+        });
+
+        plusBtn.addEventListener('click', () => {
+            let value = parseInt(quantityInput.value);
+            quantityInput.value = value + 1;
+        });
+
+        document.querySelector('.modal-add-to-cart').addEventListener('click', () => {
+            addToCart(1); // In a real app, you'd use the actual product ID
+            closeProductModal();
+        });
+
+        // Initialize
+        renderProducts();
+
+        // Add animation to cart icon on page load
+        window.addEventListener('load', () => {
+            const cartIcon = document.querySelector('.cart-icon');
+            setTimeout(() => {
+                cartIcon.classList.add('animate');
+                setTimeout(() => {
+                    cartIcon.classList.remove('animate');
+                }, 1000);
+            }, 1500);
+        });
+    </script>
+</body>
+
+</html>
