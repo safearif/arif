@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>3D Interactive Wallpaper</title>
+    <link rel="stylesheet" href="3d.css">
+    <link rel="stylesheet" href="3d.js">
+</head>
+
+<body>
+    <div class="wallpaper-container">
+        <div class="parallax-background"></div>
+
+        <div class="parallax-layer layer-1" data-depth="0.10"></div>
+        <div class="parallax-layer layer-2" data-depth="0.20"></div>
+        <div class="parallax-layer layer-3" data-depth="0.30"></div>
+        <div class="parallax-layer layer-4" data-depth="0.40"></div>
+        <div class="parallax-layer layer-5" data-depth="0.60"></div>
+        <div class="parallax-layer layer-6" data-depth="0.80"></div>
+
+        <div class="floating-particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+
+        <div class="color-controls">
+            <button class="color-btn" data-color="default"></button>
+            <button class="color-btn" data-color="sunset"></button>
+            <button class="color-btn" data-color="ocean"></button>
+            <button class="color-btn" data-color="forest"></button>
+            <button class="color-btn" data-color="space"></button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
