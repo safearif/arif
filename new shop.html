@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopEasy - Online Shopping</title>
+    <link rel="stylesheet" href="new shop.java">
+    <link rel="stylesheet" href="new shop.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-logo">
+            <h1>ShopEasy</h1>
+        </div>
+        <div class="nav-search">
+            <select class="search-select">
+                <option>All</option>
+                <option>Home Appliances</option>
+                <option>Beauty & Health</option>
+                <option>Mobile</option>
+            </select>
+            <input type="text" class="search-input" placeholder="Search products...">
+            <button class="search-button"><i class="fas fa-search"></i></button>
+        </div>
+        <div class="nav-items">
+            <div class="nav-item">
+                <span>Hello, Sign in</span>
+                <p>Account & Lists</p>
+            </div>
+            <div class="nav-item">
+                <span>Returns</span>
+                <p>& Orders</p>
+            </div>
+            <div class="nav-item cart">
+                <i class="fas fa-shopping-cart"></i>
+                <span id="cart-count">0</span>
+                <p>Cart</p>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Background Image -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Welcome to ShopEasy</h2>
+            <p>Your one-stop shop for all your needs</p>
+            <button class="shop-now">Shop Now</button>
+        </div>
+    </section>
+
+    <!-- Product Categories -->
+    <section class="categories">
+        <h2>Shop by Category</h2>
+        <div class="category-container">
+            <div class="category-card" onclick="filterProducts('appliances')">
+                <img src="https://via.placeholder.com/300x200?text=Home+Appliances" alt="Home Appliances">
+                <h3>Home Appliances</h3>
+            </div>
+            <div class="category-card" onclick="filterProducts('beauty')">
+                <img src="https://via.placeholder.com/300x200?text=Beauty+Health" alt="Beauty & Health">
+                <h3>Beauty & Health</h3>
+            </div>
+            <div class="category-card" onclick="filterProducts('mobile')">
+                <img src="https://via.placeholder.com/300x200?text=Mobile" alt="Mobile">
+                <h3>Mobile</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="products">
+        <h2>Featured Products</h2>
+        <div class="product-container" id="product-container">
+            <!-- Products will be loaded here via JavaScript -->
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Get to Know Us</h3>
+                <ul>
+                    <li>About Us</li>
+                    <li>Careers</li>
+                    <li>Press Releases</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Make Money with Us</h3>
+                <ul>
+                    <li>Sell products</li>
+                    <li>Become an Affiliate</li>
+                    <li>Advertise Your Products</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Payment Products</h3>
+                <ul>
+                    <li>Business Card</li>
+                    <li>Shop with Points</li>
+                    <li>Reload Your Balance</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Let Us Help You</h3>
+                <ul>
+                    <li>Your Account</li>
+                    <li>Your Orders</li>
+                    <li>Shipping Rates</li>
+                    <li>Returns & Replacements</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 ShopEasy. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
